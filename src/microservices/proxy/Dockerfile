@@ -1,4 +1,4 @@
-# === 1. Билд-этап: собираем JAR с помощью Maven ===
+# === 1. Билд-этап: собираем JAR с помощью Maven===
 FROM openjdk:17-jdk-slim AS builder
 
 # Рабочая директория внутри контейнера
@@ -25,5 +25,6 @@ HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
     CMD curl -f http://localhost:8000/health || exit 1
 
 EXPOSE 8000
+
 
 ENTRYPOINT ["java", "-jar", "app.jar"]
