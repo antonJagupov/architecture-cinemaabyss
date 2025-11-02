@@ -11,7 +11,7 @@ public class Status {
 
     private String status = "success";
 
-    public String isStatus() {
+    public String getStatus() {
         return status;
     }
 
@@ -19,3 +19,4 @@ public class Status {
         this.status = status;
     }
 }
+
