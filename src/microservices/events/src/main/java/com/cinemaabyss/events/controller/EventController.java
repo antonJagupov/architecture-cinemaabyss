@@ -25,21 +25,21 @@ public class EventController {
     public ResponseEntity<Status> createUserEvent(@RequestBody UserEvent userEvent) {
         log.info("Creating user event: {}", userEvent);
         eventProducer.sendUserEvent(userEvent);
-        return ResponseEntity.status(HttpStatus.CREATED).body(new Status());
+        return ResponseEntity.status(HttpStatus.CREATED).contentType(MediaType.APPLICATION_JSON).body(new Status());
     }
 
     @PostMapping("/payment")
     public ResponseEntity<Status> createPaymentEvent(@RequestBody PaymentEvent paymentEvent) {
         log.info("Creating payment event: {}", paymentEvent);
         eventProducer.sendPaymentEvent(paymentEvent);
-        return ResponseEntity.status(HttpStatus.CREATED).body(new Status());
+        return ResponseEntity.status(HttpStatus.CREATED).contentType(MediaType.APPLICATION_JSON).body(new Status());
     }
 
     @PostMapping("/movie")
     public ResponseEntity<Status> createMovieEvent(@RequestBody MovieEvent movieEvent) {
         log.info("Creating movie event: {}", movieEvent);
         eventProducer.sendMovieEvent(movieEvent);
-        return ResponseEntity.status(HttpStatus.CREATED).body(new Status());
+        return ResponseEntity.status(HttpStatus.CREATED).contentType(MediaType.APPLICATION_JSON).body(new Status());
     }
 
     @PostMapping("/generate-sample")
@@ -79,4 +79,5 @@ public class EventController {
     public ResponseEntity<HealthStatus> health() {
         return ResponseEntity.ok(new HealthStatus(true));
     }
+
 }
