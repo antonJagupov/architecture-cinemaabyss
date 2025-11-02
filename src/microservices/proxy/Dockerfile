@@ -1,24 +1,17 @@
-# === 1. Билд-этап: собираем JAR с помощью Maven ===
 FROM openjdk:17-jdk-slim AS builder
 
-# Рабочая директория внутри контейнера
-WORKDIR /app
+# Устанавливаем Maven
+RUN apt-get update && apt-get install -y maven
 
-# Копируем pom.xml и исходники
+WORKDIR /app
 COPY pom.xml .
 COPY src ./src
-
-# Устанавливаем Maven и собираем приложение
-RUN apt-get update && apt-get install -y maven && \
-    mvn -B -q clean package -DskipTests
-
+RUN mvn clean package -DskipTests
 
 FROM openjdk:17-jdk-slim
-
 WORKDIR /app
-
-# Копируем JAR файл
-COPY target/proxy-service-1.0.0.jar app.jar
+# Копируем JAR из стадии builder
+COPY --from=builder /app/target/proxy-service-1.0.0.jar app.jar
 
 # Устанавливаем здоровье приложения
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
