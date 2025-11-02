@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 @Service
 public class EventConsumer {
 
-    private static final Logger log = LoggerFactory.getLogger(EventProducer.class);
+    private static final Logger log = LoggerFactory.getLogger(EventConsumer.class);
 
     @KafkaListener(topics = "user-events", groupId = "events-group")
     public void consumeUserEvent(UserEvent userEvent) {
@@ -48,4 +48,5 @@ public class EventConsumer {
         log.info("Timestamp: {}", movieEvent.getTimestamp());
         log.info("============================");
     }
+
 }
