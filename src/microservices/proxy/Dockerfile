@@ -6,7 +6,8 @@ RUN mvn clean package -DskipTests
 
 FROM openjdk:17-jdk-slim
 WORKDIR /app
-COPY target/proxy-service-1.0.0.jar app.jar
+# Копируем JAR из стадии builder
+COPY --from=builder /app/target/proxy-service-1.0.0.jar app.jar
 
 # Устанавливаем здоровье приложения
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
@@ -15,4 +16,3 @@ HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
 EXPOSE 8000
 
 ENTRYPOINT ["java", "-jar", "app.jar"]
-
