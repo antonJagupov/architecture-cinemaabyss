@@ -17,7 +17,7 @@ import java.util.Arrays;
 @RequestMapping("/api/events")
 public class EventController {
 
-    private static final Logger log = LoggerFactory.getLogger(EventProducer.class);
+    private static final Logger log = LoggerFactory.getLogger(EventController.class);
 
     @Autowired
     private EventProducer eventProducer;
@@ -80,6 +80,4 @@ public class EventController {
     public ResponseEntity<HealthStatus> health() {
         return ResponseEntity.ok(new HealthStatus(true));
     }
-
 }
-
