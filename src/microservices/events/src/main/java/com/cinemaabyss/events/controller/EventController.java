@@ -1,12 +1,11 @@
 package com.cinemaabyss.events.controller;
 
-import com.cinemaabyss.events.model.UserEvent;
-import com.cinemaabyss.events.model.PaymentEvent;
-import com.cinemaabyss.events.model.MovieEvent;
+import com.cinemaabyss.events.model.*;
 import com.cinemaabyss.events.service.EventProducer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,24 +22,24 @@ public class EventController {
     private EventProducer eventProducer;
 
     @PostMapping("/user")
-    public ResponseEntity<String> createUserEvent(@RequestBody UserEvent userEvent) {
+    public ResponseEntity<Status> createUserEvent(@RequestBody UserEvent userEvent) {
         log.info("Creating user event: {}", userEvent);
         eventProducer.sendUserEvent(userEvent);
-        return ResponseEntity.ok("User event created and sent to Kafka");
+        return ResponseEntity.status(HttpStatus.CREATED).body(new Status());
     }
 
     @PostMapping("/payment")
-    public ResponseEntity<String> createPaymentEvent(@RequestBody PaymentEvent paymentEvent) {
+    public ResponseEntity<Status> createPaymentEvent(@RequestBody PaymentEvent paymentEvent) {
         log.info("Creating payment event: {}", paymentEvent);
         eventProducer.sendPaymentEvent(paymentEvent);
-        return ResponseEntity.ok("Payment event created and sent to Kafka");
+        return ResponseEntity.status(HttpStatus.CREATED).body(new Status());
     }
 
     @PostMapping("/movie")
-    public ResponseEntity<String> createMovieEvent(@RequestBody MovieEvent movieEvent) {
+    public ResponseEntity<Status> createMovieEvent(@RequestBody MovieEvent movieEvent) {
         log.info("Creating movie event: {}", movieEvent);
         eventProducer.sendMovieEvent(movieEvent);
-        return ResponseEntity.ok("Movie event created and sent to Kafka");
+        return ResponseEntity.status(HttpStatus.CREATED).body(new Status());
     }
 
     @PostMapping("/generate-sample")
@@ -77,7 +76,7 @@ public class EventController {
     }
 
     @GetMapping("/health")
-    public ResponseEntity<String> health() {
-        return ResponseEntity.ok("Events Service is running");
+    public ResponseEntity<HealthStatus> health() {
+        return ResponseEntity.ok(new HealthStatus(true));
     }
 }
