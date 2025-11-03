@@ -25,7 +25,45 @@ spec:
     spec:
       containers:
       - name: events-service
-       .... тут
+        image: ghcr.io/antonjagupov/architecture-cinemaabyss/events-service:latest
+        ports:
+        - containerPort: 8082
+        env:
+        - name: PORT
+          value: "8082"
+        - name: KAFKA_BROKERS
+          value: "kafka:9092"
+        envFrom:
+        - configMapRef:
+            name: cinemaabyss-config
+        - secretRef:
+            name: cinemaabyss-secrets
+        resources:
+          limits:
+            cpu: "300m"
+            memory: "256Mi"
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+        readinessProbe:
+          httpGet:
+            path: /api/events/health
+            port: 8082
+          initialDelaySeconds: 20  # Даем время приложению полностью запуститься
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+        livenessProbe:
+          httpGet:
+            path: /api/events/health
+            port: 8082
+          initialDelaySeconds: 30  # Еще больше времени для первого проверки
+          periodSeconds: 20
+          timeoutSeconds: 5
+          failureThreshold: 3
+      restartPolicy: Always
+      imagePullSecrets:
+        - name: dockerconfigjson
 ---
 apiVersion: v1
 kind: Service
@@ -37,5 +75,10 @@ metadata:
     app.kubernetes.io/name: {{ include "cinemaabyss.name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
 spec:
- ........ и тут
+  selector:
+    app: events-service
+  ports:
+  - port: 8082
+    targetPort: 8082
+  type: ClusterIP
 {{- end }}
