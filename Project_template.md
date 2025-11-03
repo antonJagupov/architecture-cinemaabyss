@@ -282,6 +282,9 @@ cat .docker/config.json | base64
 
 #### Шаг 3
 Добавьте сюда скриншота вывода при вызове https://cinemaabyss.example.com/api/movies и  скриншот вывода event-service после вызова тестов.
+[вывода при вызове](https://github.com/antonJagupov/architecture-cinemaabyss/blob/cinema/proxyserviceResponse.png)
+[вывода event-service 1](https://github.com/antonJagupov/architecture-cinemaabyss/blob/cinema/eventLog2.png)
+[вывода event-service 2](https://github.com/antonJagupov/architecture-cinemaabyss/blob/cinema/eventLog1.png)
 
 
 # Задание 4
