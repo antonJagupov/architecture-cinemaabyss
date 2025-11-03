@@ -360,6 +360,8 @@ minikube tunnel
 Потом вызовите 
 https://cinemaabyss.example.com/api/movies
 и приложите скриншот развертывания helm и вывода https://cinemaabyss.example.com/api/movies
+[helm](https://github.com/antonJagupov/architecture-cinemaabyss/blob/cinema/helm.png)
+[https://cinemaabyss.example.com/api/movies](https://github.com/antonJagupov/architecture-cinemaabyss/blob/cinema/HelmproxyserviceResponse.png)
 
 ## Удаляем все
 
