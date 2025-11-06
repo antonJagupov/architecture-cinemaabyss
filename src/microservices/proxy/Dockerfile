@@ -9,8 +9,8 @@ COPY pom.xml .
 COPY src ./src
 
 # Устанавливаем Maven и собираем приложение
-RUN apt-get update && apt-get install -y maven && \
-    mvn -B -q clean package -DskipTests
+RUN apk update && apk add --no-cache maven && \
+    mvn clean package -DskipTests
 
 
 FROM eclipse-temurin:17-alpine
@@ -18,7 +18,7 @@ FROM eclipse-temurin:17-alpine
 WORKDIR /app
 
 # Копируем JAR файл
-COPY target/*.jar app.jar
+COPY --from=builder /app/target/*.jar app.jar
 
 # Устанавливаем здоровье приложения
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
@@ -27,5 +27,6 @@ HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
 EXPOSE 8000
 
 ENTRYPOINT ["java", "-jar", "app.jar"]
+
 
 
