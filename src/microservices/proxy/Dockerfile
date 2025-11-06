@@ -1,7 +1,7 @@
 FROM eclipse-temurin:17-alpine AS builder
 
 # Устанавливаем Maven
-RUN apt-get update && apt-get install -y maven
+#RUN apt-get update && apt-get install -y maven
 
 WORKDIR /app
 COPY pom.xml .
@@ -20,4 +20,5 @@ HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
 EXPOSE 8000
 
 ENTRYPOINT ["java", "-jar", "app.jar"]
+
 
