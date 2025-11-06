@@ -1,25 +1,14 @@
 # === 1. Билд-этап: собираем JAR с помощью Maven ===
 FROM eclipse-temurin:11-alpine AS builder
-
-# Рабочая директория внутри контейнера
 WORKDIR /app
-
-# Копируем pom.xml и исходники
 COPY pom.xml .
 COPY src ./src
-
-# Устанавливаем Maven и собираем приложение
 RUN apt-get update && apt-get install -y maven && \
-    mvn -B -q clean package -DskipTests
+    mvn clean package -DskipTests
 
+# Стадия запуска
 FROM eclipse-temurin:11-alpine
-
 WORKDIR /app
-
-COPY target/*.jar app.jar
-
+COPY --from=builder /app/target/*.jar app.jar
 EXPOSE 8082
-
-ENTRYPOINT ["java", "-jar", "app.jar"]
-
-
+ENTRYPOINT ["java", "-jar", "/app.jar"]
