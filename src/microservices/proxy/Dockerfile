@@ -18,7 +18,7 @@ FROM eclipse-temurin:17-alpine
 WORKDIR /app
 
 # Копируем JAR файл
-COPY target/proxy-service-1.0.0.jar app.jar
+COPY target/*.jar app.jar
 
 # Устанавливаем здоровье приложения
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
@@ -27,4 +27,5 @@ HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
 EXPOSE 8000
 
 ENTRYPOINT ["java", "-jar", "app.jar"]
+
 
