@@ -3,7 +3,7 @@ FROM eclipse-temurin:11-alpine AS builder
 WORKDIR /app
 COPY pom.xml .
 COPY src ./src
-RUN apt-get update && apt-get install -y maven && \
+RUN apk update && apk add --no-cache maven && \
     mvn clean package -DskipTests
 
 # Стадия запуска
@@ -12,3 +12,4 @@ WORKDIR /app
 COPY --from=builder /app/target/*.jar app.jar
 EXPOSE 8082
 ENTRYPOINT ["java", "-jar", "/app.jar"]
+
