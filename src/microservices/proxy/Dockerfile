@@ -6,7 +6,8 @@ FROM eclipse-temurin:17-alpine AS builder
 WORKDIR /app
 COPY pom.xml .
 COPY src ./src
-RUN mvn clean package -DskipTests
+RUN apt-get update && apt-get install -y maven && \
+    mvn -B -q clean package -DskipTests
 
 FROM eclipse-temurin:17-alpine
 WORKDIR /app
@@ -20,5 +21,6 @@ HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
 EXPOSE 8000
 
 ENTRYPOINT ["java", "-jar", "app.jar"]
+
 
 
