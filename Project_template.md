@@ -62,7 +62,6 @@
 [Лог тестов 2](https://github.com/antonJagupov/architecture-cinemaabyss/blob/cinema/testlog2.png)
 [Лог тестов 3](https://github.com/antonJagupov/architecture-cinemaabyss/blob/cinema/testlog3.png)
 [Лог тестов 4](https://github.com/antonJagupov/architecture-cinemaabyss/blob/cinema/testlog4.png)
-[Лог тестов 5](https://github.com/antonJagupov/architecture-cinemaabyss/blob/cinema/testlog5.png)
 [Топики кафки 1](https://github.com/antonJagupov/architecture-cinemaabyss/blob/cinema/kafka_messages.png)
 [Топики кафки 2](https://github.com/antonJagupov/architecture-cinemaabyss/blob/cinema/kafka_messages1.png)
 [Топики кафки 3](https://github.com/antonJagupov/architecture-cinemaabyss/blob/cinema/kafka_messages2.png)
