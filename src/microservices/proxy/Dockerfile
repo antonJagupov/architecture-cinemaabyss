@@ -1,18 +1,24 @@
+# === 1. Билд-этап: собираем JAR с помощью Maven ===
 FROM eclipse-temurin:17-alpine AS builder
 
-# Устанавливаем Maven
-#RUN apt-get update && apt-get install -y maven
-
+# Рабочая директория внутри контейнера
 WORKDIR /app
+
+# Копируем pom.xml и исходники
 COPY pom.xml .
 COPY src ./src
+
+# Устанавливаем Maven и собираем приложение
 RUN apt-get update && apt-get install -y maven && \
     mvn -B -q clean package -DskipTests
 
+
 FROM eclipse-temurin:17-alpine
+
 WORKDIR /app
-# Копируем JAR из стадии builder
-COPY --from=builder /app/target/proxy-service-1.0.0.jar app.jar
+
+# Копируем JAR файл
+COPY target/proxy-service-1.0.0.jar app.jar
 
 # Устанавливаем здоровье приложения
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
@@ -21,6 +27,4 @@ HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
 EXPOSE 8000
 
 ENTRYPOINT ["java", "-jar", "app.jar"]
-
-
 
