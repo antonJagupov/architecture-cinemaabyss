@@ -9,8 +9,8 @@ COPY pom.xml .
 COPY src ./src
 
 # Устанавливаем Maven и собираем приложение
-RUN apt-get update && apt-get install -y maven && \
-    mvn -B -q clean package -DskipTests
+RUN apk update && apk add --no-cache maven && \
+    mvn clean package -DskipTests
 
 FROM eclipse-temurin:17-alpine
 
@@ -22,3 +22,4 @@ EXPOSE 8082
 
 
 ENTRYPOINT ["java", "-jar", "app.jar"]
+
