@@ -48,5 +48,4 @@ public class EventConsumer {
         log.info("Timestamp: {}", movieEvent.getTimestamp());
         log.info("============================");
     }
-
 }

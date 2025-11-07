@@ -19,4 +19,3 @@ public class Status {
         this.status = status;
     }
 }
-
