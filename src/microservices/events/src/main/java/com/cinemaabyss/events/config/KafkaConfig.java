@@ -21,7 +21,7 @@ public class KafkaConfig {
     @Bean
     public ProducerFactory<String, Object> producerFactory() {
         Map<String, Object> configProps = new HashMap<>();
-        String kafkaBrokers = "localhost:9092";
+        String kafkaBrokers = "kafka:9092";
         configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaBrokers);
         configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         configProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
@@ -58,4 +58,5 @@ public class KafkaConfig {
                 .replicas(1)
                 .build();
     }
+
 }
