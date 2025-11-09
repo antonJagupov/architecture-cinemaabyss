@@ -1,5 +1,5 @@
 server:
-  port: 8000
+  port: 9000
 
 monolith:
   url: ${MONOLITH_URL:http://localhost:8080}
@@ -8,14 +8,14 @@ movies:
   service:
     url: ${MOVIES_SERVICE_URL:http://localhost:8081}
   migration:
-    percent: ${MOVIES_MIGRATION_PERCENT:50}
+    percent: ${MOVIES_MIGRATION_PERCENT:100}
 
 events:
   service:
     url: ${EVENTS_SERVICE_URL:http://localhost:8082}
 
 gradual:
-  migration: ${GRADUAL_MIGRATION:false}
+  migration: ${GRADUAL_MIGRATION:true}
 
 logging:
   level:
