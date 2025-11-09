@@ -49,18 +49,18 @@ spec:
           httpGet:
             path: /api/events/health
             port: 8082
-          initialDelaySeconds: 20  # Даем время приложению полностью запуститься
-          periodSeconds: 10
-          timeoutSeconds: 5
-          failureThreshold: 3
+          initialDelaySeconds: 60  # Даем время приложению полностью запуститься
+          periodSeconds: 20
+          timeoutSeconds: 10
+          failureThreshold: 10
         livenessProbe:
           httpGet:
             path: /api/events/health
             port: 8082
-          initialDelaySeconds: 30  # Еще больше времени для первого проверки
+          initialDelaySeconds: 60  # Еще больше времени для первого проверки
           periodSeconds: 20
-          timeoutSeconds: 5
-          failureThreshold: 3
+          timeoutSeconds: 10
+          failureThreshold: 10
       restartPolicy: Always
       imagePullSecrets:
         - name: dockerconfigjson
