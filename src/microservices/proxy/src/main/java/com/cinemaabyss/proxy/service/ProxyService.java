@@ -25,9 +25,9 @@ public class ProxyService {
     public ResponseEntity<Object> routeRequest(String path, HttpMethod method, HttpEntity<?> requestEntity) {
         try {
             // Определяем целевой сервис на основе пути
-            if (path.startsWith("/movies")) {
+            if (path.startsWith("/api/movies") || path.startsWith("/api/users")) {
                 return routeToMoviesService(path, method, requestEntity);
-            } else if (path.startsWith("/events")) {
+            } else if (path.startsWith("/api/events")) {
                 return routeToEventsService(path, method, requestEntity);
             } else {
                 // Для всех остальных запросов используем монолит
@@ -92,7 +92,9 @@ public class ProxyService {
     }
 
     private boolean shouldRouteToMicroservice(int percent) {
-        return random.nextInt(100) < percent;
+        int rnd = random.nextInt(100);
+        logger.info("random = " + rnd);
+        return rnd < percent;
     }
 
     // Метод для health check всех сервисов
