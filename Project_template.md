@@ -5,7 +5,7 @@
 1. Спроектируйте to be архитектуру КиноБездны, разделив всю систему на отдельные домены и организовав интеграционное взаимодействие и единую точку вызова сервисов.
 Результат представьте в виде контейнерной диаграммы в нотации С4.
 Добавьте ссылку на файл в этот шаблон
-[ссылка на файл](ссылка)
+[Диаграмма контейнеров](https://github.com/antonJagupov/architecture-cinemaabyss/blob/cinema/container_diagram.png)
 
 # Задание 2
 
@@ -58,6 +58,13 @@
 
 Необходимые тесты для проверки этого API вызываются при запуске npm run test:local из папки tests/postman 
 Приложите скриншот тестов и скриншот состояния топиков Kafka из UI http://localhost:8090 
+[Лог тестов 1](https://github.com/antonJagupov/architecture-cinemaabyss/blob/cinema/testlog1.png)
+[Лог тестов 2](https://github.com/antonJagupov/architecture-cinemaabyss/blob/cinema/testlog2.png)
+[Лог тестов 3](https://github.com/antonJagupov/architecture-cinemaabyss/blob/cinema/testlog3.png)
+[Лог тестов 4](https://github.com/antonJagupov/architecture-cinemaabyss/blob/cinema/testlog4.png)
+[Топики кафки 1](https://github.com/antonJagupov/architecture-cinemaabyss/blob/cinema/kafka_messages.png)
+[Топики кафки 2](https://github.com/antonJagupov/architecture-cinemaabyss/blob/cinema/kafka_messages1.png)
+[Топики кафки 3](https://github.com/antonJagupov/architecture-cinemaabyss/blob/cinema/kafka_messages2.png)
 
 # Задание 3
 
@@ -274,6 +281,9 @@ cat .docker/config.json | base64
 
 #### Шаг 3
 Добавьте сюда скриншота вывода при вызове https://cinemaabyss.example.com/api/movies и  скриншот вывода event-service после вызова тестов.
+[вывода при вызове](https://github.com/antonJagupov/architecture-cinemaabyss/blob/cinema/proxyserviceResponse.png)
+[вывода event-service 1](https://github.com/antonJagupov/architecture-cinemaabyss/blob/cinema/eventLog2.png)
+[вывода event-service 2](https://github.com/antonJagupov/architecture-cinemaabyss/blob/cinema/eventLog1.png)
 
 
 # Задание 4
@@ -349,6 +359,8 @@ minikube tunnel
 Потом вызовите 
 https://cinemaabyss.example.com/api/movies
 и приложите скриншот развертывания helm и вывода https://cinemaabyss.example.com/api/movies
+[helm](https://github.com/antonJagupov/architecture-cinemaabyss/blob/cinema/helm3.png)
+[https://cinemaabyss.example.com/api/movies](https://github.com/antonJagupov/architecture-cinemaabyss/blob/cinema/HelmproxyserviceResponse.png)
 
 ## Удаляем все
 

@@ -1,0 +1,27 @@
+server:
+  port: 8000
+
+monolith:
+  url: ${MONOLITH_URL:http://localhost:8080}
+
+movies:
+  service:
+    url: ${MOVIES_SERVICE_URL:http://localhost:8081}
+  migration:
+    percent: ${MOVIES_MIGRATION_PERCENT:50}
+
+events:
+  service:
+    url: ${EVENTS_SERVICE_URL:http://localhost:8082}
+
+gradual:
+  migration: ${GRADUAL_MIGRATION:true}
+
+logging:
+  level:
+    com.cinemaabyss.proxy: INFO
+    org.springframework.web.client: DEBUG
+
+spring:
+  application:
+    name: proxy-service
