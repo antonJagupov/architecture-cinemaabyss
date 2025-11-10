@@ -25,7 +25,7 @@ public class ProxyService {
     public ResponseEntity<Object> routeRequest(String path, HttpMethod method, HttpEntity<?> requestEntity) {
         try {
             // Определяем целевой сервис на основе пути
-            if (path.startsWith("/api/movies") || path.startsWith("/api/users")) {
+            if (path.startsWith("/api/movies")) {
                 return routeToMoviesService(path, method, requestEntity);
             } else if (path.startsWith("/api/events")) {
                 return routeToEventsService(path, method, requestEntity);
